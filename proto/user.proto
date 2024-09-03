@@ -1,5 +1,6 @@
 syntax = "proto3";
 option go_package = "grpc-golang/user";
+package user;
 
 message Response {
   int64 code = 1;
