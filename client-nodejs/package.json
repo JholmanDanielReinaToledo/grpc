@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@grpc/grpc-js": "^1.11.1",
+    "@grpc/grpc-js": "^1.11.2",
     "@grpc/proto-loader": "^0.7.13",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "grpc-tools": "^1.12.4",
+    "grpc_tools_node_protoc_ts": "^5.3.3",
+    "install": "^0.13.0",
+    "npm": "^10.8.3"
   },
   "scripts": {
     "build": "tsc",

@@ -1,33 +1,7 @@
 import express, { Request, Response } from 'express';
-import { loadSync } from '@grpc/proto-loader'; 
-import { loadPackageDefinition, credentials } from '@grpc/grpc-js';
-import path from 'path';
+import { UserServiceService } from './proto/user_grpc_pb';
 
-const PROTO_PATH = path.join(__dirname, './../../proto/user.proto');
-
-const packageDefinition = loadSync(PROTO_PATH, {
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true,
-})
-
-const protoService: any = loadPackageDefinition(packageDefinition);
-
-const client = new protoService.user.UserService('localhost:8089', credentials.createInsecure());
-
-client.Create(
-  {
-    user: {
-      name: "Juan",
-      number: "321",
-    },
-  },
-  (error: any, response: any) => {
-    console.log(error, response)
-  },
-);
+console.log(UserServiceService)
 
 const app = express();
 const PORT = process.env.PORT || 3000;
