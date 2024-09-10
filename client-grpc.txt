@@ -2,4 +2,8 @@ grpc_tools_node_protoc \
 --js_out=import_style=commonjs,binary:./client-nodejs/src \
 --grpc_out=./client-nodejs/src \
 --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` \
+--ts_out=./client-nodejs/src \
 ./proto/user.proto
+
+
+npm install -g grpc-tools

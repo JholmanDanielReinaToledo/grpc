@@ -7,14 +7,14 @@
 import * as grpc from "grpc";
 import * as proto_user_pb from "../proto/user_pb";
 
-interface IUserServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    create: IUserServiceService_ICreate;
-    delete: IUserServiceService_IDelete;
-    getById: IUserServiceService_IGetById;
+interface IUserService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    create: IUserService_ICreate;
+    delete: IUserService_IDelete;
+    getById: IUserService_IGetById;
 }
 
-interface IUserServiceService_ICreate extends grpc.MethodDefinition<proto_user_pb.CreateUserRequest, proto_user_pb.CreateUserResponse> {
-    path: "/user.UserService/Create";
+interface IUserService_ICreate extends grpc.MethodDefinition<proto_user_pb.CreateUserRequest, proto_user_pb.CreateUserResponse> {
+    path: "/user.User/Create";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<proto_user_pb.CreateUserRequest>;
@@ -22,8 +22,8 @@ interface IUserServiceService_ICreate extends grpc.MethodDefinition<proto_user_p
     responseSerialize: grpc.serialize<proto_user_pb.CreateUserResponse>;
     responseDeserialize: grpc.deserialize<proto_user_pb.CreateUserResponse>;
 }
-interface IUserServiceService_IDelete extends grpc.MethodDefinition<proto_user_pb.DeleteUserRequest, proto_user_pb.DeleteUserResponse> {
-    path: "/user.UserService/Delete";
+interface IUserService_IDelete extends grpc.MethodDefinition<proto_user_pb.DeleteUserRequest, proto_user_pb.DeleteUserResponse> {
+    path: "/user.User/Delete";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<proto_user_pb.DeleteUserRequest>;
@@ -31,8 +31,8 @@ interface IUserServiceService_IDelete extends grpc.MethodDefinition<proto_user_p
     responseSerialize: grpc.serialize<proto_user_pb.DeleteUserResponse>;
     responseDeserialize: grpc.deserialize<proto_user_pb.DeleteUserResponse>;
 }
-interface IUserServiceService_IGetById extends grpc.MethodDefinition<proto_user_pb.GetByIdUserRequest, proto_user_pb.GetByIdUserResponse> {
-    path: "/user.UserService/GetById";
+interface IUserService_IGetById extends grpc.MethodDefinition<proto_user_pb.GetByIdUserRequest, proto_user_pb.GetByIdUserResponse> {
+    path: "/user.User/GetById";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<proto_user_pb.GetByIdUserRequest>;
@@ -41,15 +41,15 @@ interface IUserServiceService_IGetById extends grpc.MethodDefinition<proto_user_
     responseDeserialize: grpc.deserialize<proto_user_pb.GetByIdUserResponse>;
 }
 
-export const UserServiceService: IUserServiceService;
+export const UserService: IUserService;
 
-export interface IUserServiceServer {
+export interface IUserServer {
     create: grpc.handleUnaryCall<proto_user_pb.CreateUserRequest, proto_user_pb.CreateUserResponse>;
     delete: grpc.handleUnaryCall<proto_user_pb.DeleteUserRequest, proto_user_pb.DeleteUserResponse>;
     getById: grpc.handleUnaryCall<proto_user_pb.GetByIdUserRequest, proto_user_pb.GetByIdUserResponse>;
 }
 
-export interface IUserServiceClient {
+export interface IUserClient {
     create(request: proto_user_pb.CreateUserRequest, callback: (error: grpc.ServiceError | null, response: proto_user_pb.CreateUserResponse) => void): grpc.ClientUnaryCall;
     create(request: proto_user_pb.CreateUserRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: proto_user_pb.CreateUserResponse) => void): grpc.ClientUnaryCall;
     create(request: proto_user_pb.CreateUserRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: proto_user_pb.CreateUserResponse) => void): grpc.ClientUnaryCall;
@@ -61,7 +61,7 @@ export interface IUserServiceClient {
     getById(request: proto_user_pb.GetByIdUserRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: proto_user_pb.GetByIdUserResponse) => void): grpc.ClientUnaryCall;
 }
 
-export class UserServiceClient extends grpc.Client implements IUserServiceClient {
+export class UserClient extends grpc.Client implements IUserClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
     public create(request: proto_user_pb.CreateUserRequest, callback: (error: grpc.ServiceError | null, response: proto_user_pb.CreateUserResponse) => void): grpc.ClientUnaryCall;
     public create(request: proto_user_pb.CreateUserRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: proto_user_pb.CreateUserResponse) => void): grpc.ClientUnaryCall;

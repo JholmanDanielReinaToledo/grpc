@@ -11,7 +11,7 @@ import (
 )
 
 type serviceUser struct {
-	user.UnimplementedUserServiceServer
+	user.UnimplementedUserServer
 }
 
 func (s serviceUser) Create(ctx context.Context, req *user.CreateUserRequest) (*user.CreateUserResponse, error) {
@@ -26,7 +26,7 @@ func (s serviceUser) Create(ctx context.Context, req *user.CreateUserRequest) (*
 	}
 
 	return &user.CreateUserResponse{
-		User: &user.User{
+		User: &user.UserModel{
 			Id:     newUser.Id,
 			Name:   newUser.Name,
 			Number: newUser.Number,
@@ -59,7 +59,7 @@ func (s serviceUser) GetById(ctx context.Context, req *user.GetByIdUserRequest) 
 	}
 
 	return &user.GetByIdUserResponse{
-		User: &user.User{
+		User: &user.UserModel{
 			Id:     userTemp.Id,
 			Name:   userTemp.Name,
 			Number: userTemp.Number,
@@ -73,7 +73,7 @@ func (s serviceUser) GetById(ctx context.Context, req *user.GetByIdUserRequest) 
 
 func Init(listener *net.Listener, server *grpc.Server) {
 	service := &serviceUser{}
-	user.RegisterUserServiceServer(server, service)
+	user.RegisterUserServer(server, service)
 
 	log.Print("Init User service")
 }

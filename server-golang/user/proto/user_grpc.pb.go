@@ -19,177 +19,177 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_Create_FullMethodName  = "/user.UserService/Create"
-	UserService_Delete_FullMethodName  = "/user.UserService/Delete"
-	UserService_GetById_FullMethodName = "/user.UserService/GetById"
+	User_Create_FullMethodName  = "/user.User/Create"
+	User_Delete_FullMethodName  = "/user.User/Delete"
+	User_GetById_FullMethodName = "/user.User/GetById"
 )
 
-// UserServiceClient is the client API for UserService service.
+// UserClient is the client API for User service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserServiceClient interface {
+type UserClient interface {
 	Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	Delete(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	GetById(ctx context.Context, in *GetByIdUserRequest, opts ...grpc.CallOption) (*GetByIdUserResponse, error)
 }
 
-type userServiceClient struct {
+type userClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
-	return &userServiceClient{cc}
+func NewUserClient(cc grpc.ClientConnInterface) UserClient {
+	return &userClient{cc}
 }
 
-func (c *userServiceClient) Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+func (c *userClient) Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, UserService_Create_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) Delete(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+func (c *userClient) Delete(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteUserResponse)
-	err := c.cc.Invoke(ctx, UserService_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) GetById(ctx context.Context, in *GetByIdUserRequest, opts ...grpc.CallOption) (*GetByIdUserResponse, error) {
+func (c *userClient) GetById(ctx context.Context, in *GetByIdUserRequest, opts ...grpc.CallOption) (*GetByIdUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetByIdUserResponse)
-	err := c.cc.Invoke(ctx, UserService_GetById_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, User_GetById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServiceServer is the server API for UserService service.
-// All implementations must embed UnimplementedUserServiceServer
+// UserServer is the server API for User service.
+// All implementations must embed UnimplementedUserServer
 // for forward compatibility.
-type UserServiceServer interface {
+type UserServer interface {
 	Create(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	Delete(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	GetById(context.Context, *GetByIdUserRequest) (*GetByIdUserResponse, error)
-	mustEmbedUnimplementedUserServiceServer()
+	mustEmbedUnimplementedUserServer()
 }
 
-// UnimplementedUserServiceServer must be embedded to have
+// UnimplementedUserServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUserServiceServer struct{}
+type UnimplementedUserServer struct{}
 
-func (UnimplementedUserServiceServer) Create(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
+func (UnimplementedUserServer) Create(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedUserServiceServer) Delete(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+func (UnimplementedUserServer) Delete(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUserServiceServer) GetById(context.Context, *GetByIdUserRequest) (*GetByIdUserResponse, error) {
+func (UnimplementedUserServer) GetById(context.Context, *GetByIdUserRequest) (*GetByIdUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
-func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
+func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserServer) testEmbeddedByValue()              {}
 
-// UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServiceServer will
+// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServer will
 // result in compilation errors.
-type UnsafeUserServiceServer interface {
-	mustEmbedUnimplementedUserServiceServer()
+type UnsafeUserServer interface {
+	mustEmbedUnimplementedUserServer()
 }
 
-func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
-	// If the following call pancis, it indicates UnimplementedUserServiceServer was
+func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
+	// If the following call pancis, it indicates UnimplementedUserServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&UserService_ServiceDesc, srv)
+	s.RegisterService(&User_ServiceDesc, srv)
 }
 
-func _UserService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).Create(ctx, in)
+		return srv.(UserServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_Create_FullMethodName,
+		FullMethod: User_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Create(ctx, req.(*CreateUserRequest))
+		return srv.(UserServer).Create(ctx, req.(*CreateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).Delete(ctx, in)
+		return srv.(UserServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_Delete_FullMethodName,
+		FullMethod: User_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Delete(ctx, req.(*DeleteUserRequest))
+		return srv.(UserServer).Delete(ctx, req.(*DeleteUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _User_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetByIdUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetById(ctx, in)
+		return srv.(UserServer).GetById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_GetById_FullMethodName,
+		FullMethod: User_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetById(ctx, req.(*GetByIdUserRequest))
+		return srv.(UserServer).GetById(ctx, req.(*GetByIdUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
+// User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
-	HandlerType: (*UserServiceServer)(nil),
+var User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "user.User",
+	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _UserService_Create_Handler,
+			Handler:    _User_Create_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _UserService_Delete_Handler,
+			Handler:    _User_Delete_Handler,
 		},
 		{
 			MethodName: "GetById",
-			Handler:    _UserService_GetById_Handler,
+			Handler:    _User_GetById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

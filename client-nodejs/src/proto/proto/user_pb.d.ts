@@ -29,25 +29,25 @@ export namespace Response {
     }
 }
 
-export class User extends jspb.Message { 
+export class UserModel extends jspb.Message { 
     getId(): number;
-    setId(value: number): User;
+    setId(value: number): UserModel;
     getName(): string;
-    setName(value: string): User;
+    setName(value: string): UserModel;
     getNumber(): string;
-    setNumber(value: string): User;
+    setNumber(value: string): UserModel;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): User.AsObject;
-    static toObject(includeInstance: boolean, msg: User): User.AsObject;
+    toObject(includeInstance?: boolean): UserModel.AsObject;
+    static toObject(includeInstance: boolean, msg: UserModel): UserModel.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: User, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): User;
-    static deserializeBinaryFromReader(message: User, reader: jspb.BinaryReader): User;
+    static serializeBinaryToWriter(message: UserModel, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UserModel;
+    static deserializeBinaryFromReader(message: UserModel, reader: jspb.BinaryReader): UserModel;
 }
 
-export namespace User {
+export namespace UserModel {
     export type AsObject = {
         id: number,
         name: string,
@@ -59,8 +59,8 @@ export class CreateUserRequest extends jspb.Message {
 
     hasUser(): boolean;
     clearUser(): void;
-    getUser(): User | undefined;
-    setUser(value?: User): CreateUserRequest;
+    getUser(): UserModel | undefined;
+    setUser(value?: UserModel): CreateUserRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateUserRequest.AsObject;
@@ -74,7 +74,7 @@ export class CreateUserRequest extends jspb.Message {
 
 export namespace CreateUserRequest {
     export type AsObject = {
-        user?: User.AsObject,
+        user?: UserModel.AsObject,
     }
 }
 
@@ -82,8 +82,8 @@ export class CreateUserResponse extends jspb.Message {
 
     hasUser(): boolean;
     clearUser(): void;
-    getUser(): User | undefined;
-    setUser(value?: User): CreateUserResponse;
+    getUser(): UserModel | undefined;
+    setUser(value?: UserModel): CreateUserResponse;
 
     hasRes(): boolean;
     clearRes(): void;
@@ -102,7 +102,7 @@ export class CreateUserResponse extends jspb.Message {
 
 export namespace CreateUserResponse {
     export type AsObject = {
-        user?: User.AsObject,
+        user?: UserModel.AsObject,
         res?: Response.AsObject,
     }
 }
@@ -174,8 +174,8 @@ export class GetByIdUserResponse extends jspb.Message {
 
     hasUser(): boolean;
     clearUser(): void;
-    getUser(): User | undefined;
-    setUser(value?: User): GetByIdUserResponse;
+    getUser(): UserModel | undefined;
+    setUser(value?: UserModel): GetByIdUserResponse;
 
     hasRes(): boolean;
     clearRes(): void;
@@ -194,7 +194,7 @@ export class GetByIdUserResponse extends jspb.Message {
 
 export namespace GetByIdUserResponse {
     export type AsObject = {
-        user?: User.AsObject,
+        user?: UserModel.AsObject,
         res?: Response.AsObject,
     }
 }

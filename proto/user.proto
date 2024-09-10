@@ -7,18 +7,18 @@ message Response {
   string message = 2;
 }
 
-message User {
+message UserModel {
   int64 id = 1;
   string name = 2;
   string number = 3;
 }
 
 message CreateUserRequest {
-  User user = 1;
+  UserModel user = 1;
 }
 
 message CreateUserResponse {
-  User user = 1;
+  UserModel user = 1;
   Response res = 2;
 }
 
@@ -35,11 +35,11 @@ message GetByIdUserRequest {
 }
 
 message GetByIdUserResponse {
-  User user = 1;
+  UserModel user = 1;
   Response res = 2;
 }
 
-service UserService {
+service User {
   rpc Create(CreateUserRequest) returns (CreateUserResponse);
   rpc Delete(DeleteUserRequest) returns (DeleteUserResponse);
   rpc GetById(GetByIdUserRequest) returns (GetByIdUserResponse);

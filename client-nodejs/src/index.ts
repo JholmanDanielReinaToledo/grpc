@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-import { UserServiceService } from './proto/user_grpc_pb';
+import { UserService } from './proto/user_grpc_pb';
 
-console.log(UserServiceService)
+console.log(UserService)
 
 const app = express();
 const PORT = process.env.PORT || 3000;
