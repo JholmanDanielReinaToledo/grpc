@@ -1,8 +1,10 @@
+import { User } from "../models/user.model";
 import { UserClient } from "../proto/user_grpc_pb";
 import { CreateUserRequest, UserModel } from "../proto/user_pb";
+import { UserServiceI } from "./user.service.i";
 const Grpc = require('@grpc/grpc-js');
 
-class UserService {
+class UserService implements UserServiceI {
   userServ: UserClient;
 
   constructor() {
@@ -22,7 +24,7 @@ class UserService {
     return user;
   }
 
-  async create(user: { name: string, number: string }) {
+  async create(user: { name: string, number: string }): Promise<User> {
     const req = new CreateUserRequest();
     req.setUser(this.createUser(user));
   
@@ -33,10 +35,10 @@ class UserService {
         }
   
         const userSerialized = res.getUser();
-        const newUser = {
+        const newUser: User = {
           id: userSerialized?.getId(),
-          name: userSerialized?.getName(),
-          number: userSerialized?.getNumber(),
+          name: userSerialized?.getName() || '',
+          number: userSerialized?.getNumber() || '',
         };
   
         resolve(newUser);
@@ -44,12 +46,17 @@ class UserService {
     });
   }
 
-  delete() {
-
+  async delete(id: number): Promise<void> {
+    
   }
 
-  getById() {
+  async getById(id: number): Promise<User> {
+    const newUser: User = {
+      name: '',
+      number: '',
+    };
 
+    return newUser
   }
 }
 
